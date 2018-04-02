@@ -1,2 +1,3 @@
-# AmpExperiments
+# 3DAMP Experiments
+## with JavaScript
 
