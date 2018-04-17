@@ -56,62 +56,52 @@ function init(){
     
     document.getElementById("par").innerHTML = "Day " + day;
     
-    
 }
 
 function clickBtn(){
+    growTree();
+}
+
+function sleep(milliseconds) {
+  var start = new Date().getTime();
+  for (var i = 0; i < 1e7; i++) {
+    if ((new Date().getTime() - start) > milliseconds){
+      break;
+    }
+  }
+}
+
+function growTree(){
     ctx.fillStyle = bgrdColor;
     ctx.fillRect(0, 0, w, h);
     
     rnd = parseInt(text.value);
-    
-    day+=10;
+    day+=60;
     document.getElementById("par").innerHTML = "Day " + day;
-    
-    
-    /*
-    // SHOW AVERAGE
-    var k = 0;
-    for(var i=1000;i>0;i--){
-        k+=getRnd();
-    }
-    document.getElementById("par").innerHTML += " | " + k/1000;
-    */
-    
-    //console.log(getRnd());
-    
-    
-    //CRECIMIENTO
+
+    //GROWING
     if(day<tree.heightMax){
         iinit=day;
         for(var i=day;i>0;i--){
-
             drawTree(i);
-            
         }
         ctx.fillStyle = bgrdColor;
         ctx.fillRect(0, h-20, w, h);
-        
-    }else{ //ENSANCHE
+
+    }else{ //WIDENING
         if(espesor < tree.espesorMax){
             espesor += 1-(espesor/tree.espesorMax);
         }
         iinit=tree.heightMax;
         for(var i=tree.heightMax;i>0;i--){
-
             drawTree(i);
-
         }
         ctx.fillStyle = bgrdColor;
         ctx.fillRect(0, h-20, w, h);
     }
-    
-    
     //reset pen
     pen = [];
     pen[0] = new penn();
-   
-    
 }
 
 function changeText(){
